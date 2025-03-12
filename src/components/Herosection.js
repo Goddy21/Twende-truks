@@ -1,8 +1,14 @@
 import React from 'react';
 import './HeroSection.css';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
+    const navigate = useNavigate();
+
+    const viewListings = ()=>{
+        navigate('/listings')
+    }
     return (
         <>
         <section className="hero">
@@ -18,6 +24,7 @@ const HeroSection = () => {
                     className="browse-button"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    onClick={()=>viewListings()}
                 >
                     Browse Listings
                 </motion.button>
