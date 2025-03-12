@@ -1,0 +1,78 @@
+/* OrderPage.css */
+.order-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.order-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.order-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.order-form label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.order-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+    background: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .order-container {
+        padding: 20px;
+    }
+
+    .order-form {
+        padding: 20px;
+    }
+
+    .order-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .order-form label {
+        font-size: 0.9rem;
+    }
+
+    .submit-button {
+        font-size: 0.9rem;
+    }
+}
