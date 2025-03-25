@@ -1,13 +1,18 @@
 import React from 'react';
 import './HeroSection.css';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const HeroSection = () => {
     const navigate = useNavigate();
+    const {id} = useParams();
 
     const viewListings = ()=>{
         navigate('/listings')
+    }
+
+    const orderNow = () =>{
+        navigate(`/order/${id}`);
     }
     return (
         <>
@@ -35,10 +40,10 @@ const HeroSection = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
             >
-                <motion.img src="/images/truck.jpg" alt="Truck 1" className="truck-image" whileHover={{ scale: 1.05 }} />
-                <motion.img src="/images/truck2.jpg" alt="Truck 2" className="truck-image" whileHover={{ scale: 1.05 }} />
-                <motion.img src="/images/truck3.jpg" alt="Truck 3" className="truck-image" whileHover={{ scale: 1.05 }} />
-                <motion.img src="/images/truck1.jpg" alt="Truck 3" className="truck-image" whileHover={{ scale: 1.05 }} />
+                <motion.img src="/images/truck.jpg" alt="Truck 1" className="truck-image" whileHover={{ scale: 1.15 }}  onClick={orderNow}/>
+                <motion.img src="/images/truck2.jpg" alt="Truck 2" className="truck-image" whileHover={{ scale: 1.15 }} onClick={orderNow}/>
+                <motion.img src="/images/truck3.jpg" alt="Truck 3" className="truck-image" whileHover={{ scale: 1.15 }} onClick={orderNow}/>
+                <motion.img src="/images/truck1.jpg" alt="Truck 3" className="truck-image" whileHover={{ scale: 1.15 }} onClick={orderNow}/>
             </motion.div>
         </section>
         </>

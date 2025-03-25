@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -11,15 +11,17 @@ import HeroSection from './components/Herosection';
 import { TermsOfService } from './components/TermsOfService';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import OrderPage from './components/OrderPage';
+import UserManagement from './components/UserManagement';
 
 const App = () => {
+    const [searchQuery, setSearchQuery] = useState("");
     return (
         <Router>
-            <Header />
+            <Header setSearchQuery={setSearchQuery} />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/herosection" element={<HeroSection />} />
-                <Route path="/listings" element={<TruckList />} />
+                <Route path="/listings" element={<TruckList searchQuery={searchQuery}/>} />
                 <Route path="/signin" element={<Signin />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/contact" element={<Contact />} />
@@ -27,6 +29,7 @@ const App = () => {
                 <Route path="/terms" element={<TermsOfService />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/order/:id" element={<OrderPage />} />
+                <Route path="/users" element={<UserManagement />} />
             </Routes>
         </Router>
     );

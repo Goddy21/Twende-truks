@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import './TruckList.css';
@@ -16,17 +16,21 @@ const trucks = [
     { id: 9, name: 'WHEELBASE', type: 'Trail Lift Truck', image: '/images/tr9.jpeg' }
 ];
 
-const TruckList = () => {
+const TruckList = ({searchQuery}) => {
     const navigate = useNavigate();
-
     const handleViewDetails = (truck) => {
-        navigate(`/order/${truck.id}`, { state: truck });
+        localStorage.setItem('selectedTruck', JSON.stringify(truck)); // Store in localStorage
+        navigate(`/order/${truck.id}`, { state: { truck } }); // Pass via state
     };
+
+    const filteredTrucks = trucks.filter(truck =>
+        truck.name.toLowerCase().includes(String(searchQuery || "").toLowerCase())
+    );
 
     return (
         <>
         <section className="truck-list">
-            {trucks.map(truck => (
+            {filteredTrucks.map(truck => (
                 <motion.div 
                     key={truck.id} 
                     className="truck-card"

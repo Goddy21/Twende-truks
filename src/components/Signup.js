@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import './Auth.css';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         username: '',
+        phone:'',
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
     });
 
     const handleChange = (e) => {
@@ -13,10 +18,36 @@ const Signup = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Signup Data:', formData);
+        console.log("Form Data:", formData);
+        if(formData.password!==formData.confirmPassword){
+            alert('Passwords do not match!')
+        }
+        else{
+            try {
+                const response = await fetch('http://localhost:5000/api/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+        
+                const data = await response.json();
+                if (response.ok) {
+                    console.log('Signup successful:', data);
+                } else {
+                    console.error('Signup failed:', data.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
     };
+    
+    const signIn = () => {
+        navigate('/signin')
+    }
 
     return (
         <div className="auth-container">
@@ -27,6 +58,14 @@ const Signup = () => {
                     name="username" 
                     placeholder="Username" 
                     value={formData.username} 
+                    onChange={handleChange} 
+                    required 
+                />
+                <input 
+                    type="phone" 
+                    name="phone" 
+                    placeholder="Phone Number" 
+                    value={formData.phone} 
                     onChange={handleChange} 
                     required 
                 />
@@ -46,7 +85,17 @@ const Signup = () => {
                     onChange={handleChange} 
                     required 
                 />
+                <input 
+                    type="password" 
+                    name="confirmPassword" 
+                    placeholder="Password" 
+                    value={formData.confirmPassword} 
+                    onChange={handleChange} 
+                    required 
+                />
                 <button type="submit">Sign Up</button>
+
+                <p onClick={signIn}>I already have an account</p>
             </form>
         </div>
     );

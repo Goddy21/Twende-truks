@@ -15,11 +15,29 @@ const Contact = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log('Contact Form Data:', formData);
-    };
+        try{
+            const response = await fetch('http://localhost:5000/api/contact', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(formData),
+            });
 
+            const data = await response.json();
+            if (response.ok){
+                console.log('Message received', data);
+                alert('We received you information. Thank you!')
+            }else{
+                console.log('Error', data.error);
+            }
+        }catch(error){
+            console.log('Error', error);
+        }
+
+        console.log('Contact Form Data:', formData);
+    }
+    
     return (
         <>
         <motion.div 
@@ -69,6 +87,20 @@ const Contact = () => {
                     Send Message
                 </motion.button>
             </motion.form>
+
+        {/* Google Map Section */}
+        <div className="map-section">
+            <h2>Find Us Here</h2>
+            <iframe
+            title="Google Map"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBR3E1UJ6IHkFTgonnGrT_JHrhXS8nAPaw&q=Nairobi,Kenya"
+            width="100%"
+            height="400"
+            style={{ border: "0" }}
+            allowFullScreen=""
+            loading="lazy"
+            ></iframe>
+        </div>
         </motion.div>
         <Footer />
         </>

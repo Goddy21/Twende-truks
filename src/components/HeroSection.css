@@ -1,10 +1,10 @@
 /* HeroSection.css */
 .hero {
-    background-image: url('/public/images/tr3.jpeg');
+    background-image: url('/public/images/bg.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    color: #fff;
+    color: darkblue;
     text-align: center;
     padding: 100px 20px;
     display: flex;
