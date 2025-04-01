@@ -21,16 +21,19 @@ const OrderPage = () => {
         sizeUnit: 'feet'
     });
 
+    /*
     // ✅ Check authentication from localStorage
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
-        if (user && user.id) {
-            setIsAuthenticated(true);
+        if (!user || !user.id) {
+            setTimeout(() => navigate('/signin'), 1000);
         } else {
-            setIsAuthenticated(false);
-            navigate('/signin');
+            setIsAuthenticated(true);
         }
-    }, [navigate]);
+    }, [navigate]);*/
+    
+    
+    
     
 
     useEffect(() => {
@@ -47,32 +50,39 @@ const OrderPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Order Details:", orderDetails);
+        if (!truck?.name || !orderDetails.purpose || !orderDetails.duration || !orderDetails.size || !orderDetails.sizeUnit) {
+            alert('All fields are required!');
+            return;
+        }
 
         try {
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (!user || !user.token) {
+            
+            //const user = JSON.parse(localStorage.getItem('user'));
+            /*if (!user || !user.token) {
                 alert('You must be signed in to place an order.');
                 navigate('/signin');
                 return;
-            }
+            }*/
 
             const response = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${user.token}`
+                    //'Authorization': `Bearer ${user.token}`
                 },
                 body: JSON.stringify({
                     truck_name: truck?.name,
                     purpose: orderDetails.purpose,
                     duration: orderDetails.duration,
-                    size: `${orderDetails.size} ${orderDetails.sizeUnit}`
+                    size: orderDetails.size,
+                    sizeUnit: orderDetails.sizeUnit
                 }),
             });
 
             const data = await response.json();
             if (response.ok) {
-                alert(`Order placed successfully for ${truck?.name}`);
+                alert(`Order placed successfully for ${truck?.name}. We look forward to contacting you soon! Thank you!`);
                 navigate('/');
             } else {
                 alert(`Order failed: ${data.error}`);

@@ -10,9 +10,19 @@ const Header = ({setSearchQuery}) => {
     const [query, setQuery] = useState("");
 
     useEffect(() => {
-        const user = localStorage.getItem('user');
-        setIsAuthenticated(!!user);
+        const checkAuth = () => {
+            const user = localStorage.getItem('user');
+            setIsAuthenticated(!!user);
+        };
+    
+        checkAuth();  
+        window.addEventListener("storage", checkAuth);
+    
+        return () => {
+            window.removeEventListener("storage", checkAuth);
+        };
     }, []);
+    
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
@@ -25,8 +35,11 @@ const Header = ({setSearchQuery}) => {
     const handleLogout = () => {
         localStorage.removeItem('user');
         setIsAuthenticated(false);
-        navigate('/signin');
+        window.dispatchEvent(new Event("storage")); 
+        window.location.href = "/signin"; 
     };
+    
+    
 
     const handleSearch = (e) =>{
         setQuery(e.target.value);

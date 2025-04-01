@@ -47,6 +47,20 @@ const Contact = () => {
             transition={{ duration: 0.5 }}
         >
             <h2>Contact Us</h2>
+            <motion.div className='row'>
+                <motion.section className='column' whileHover={{scale:1.05}} whileTap={{scale:0.95}}>
+                    <h4>Email</h4>
+                    <p><a href='mailto:transport@twendetrucks.com'>transport@twendetrucks.com</a></p>
+                </motion.section>
+                <motion.section className='column' whileHover={{scale:1.05}} whileTap={{scale:0.95}}>
+                    <h4>Phone</h4>
+                    <p><a href='tel:+254798187878'>+254798187878</a></p>
+                </motion.section>
+                <motion.section className='column' whileHover={{scale:1.05}}>
+                    <h4>Physical address</h4>
+                    <p>Kajiado town</p>
+                </motion.section>
+            </motion.div>
             <motion.form 
                 onSubmit={handleSubmit}
                 initial={{ opacity: 0 }}
@@ -92,15 +106,13 @@ const Contact = () => {
         <div className="map-section">
             <h2>Find Us Here</h2>
             <iframe
-            title="Google Map"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBR3E1UJ6IHkFTgonnGrT_JHrhXS8nAPaw&q=Nairobi,Kenya"
-            width="100%"
-            height="400"
-            style={{ border: "0" }}
-            allowFullScreen=""
-            loading="lazy"
+                title="Google Map"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBR3E1UJ6IHkFTgonnGrT_JHrhXS8nAPaw&q=-1.8534,36.7820"
+                allowFullScreen
+                loading="lazy"
             ></iframe>
         </div>
+
         </motion.div>
         <Footer />
         </>

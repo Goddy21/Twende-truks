@@ -59,6 +59,7 @@ const About = () => {
                 />
             ))}
         </div>
+        <br />
         <Footer />
         </>
     );

@@ -83,6 +83,7 @@
 
 .search-bar input {
     padding: 5px;
+    width: auto;
     border: none;
     border-radius: 5px;
 }
@@ -94,6 +95,7 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    height: 100%;
 }
 
 .search-bar button:hover {

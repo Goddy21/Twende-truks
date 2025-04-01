@@ -29,7 +29,7 @@ const App = () => {
                 <Route path="/terms" element={<TermsOfService />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/order/:id" element={<OrderPage />} />
-                <Route path="/users" element={<UserManagement />} />
+                <Route path="/admin" element={<UserManagement />} />
             </Routes>
         </Router>
     );

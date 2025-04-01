@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const navigate = useNavigate();
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const [formData, setFormData] = useState({
         username: '',
@@ -20,9 +22,12 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage("");
+        setSuccessMessage("");
         console.log("Form Data:", formData);
         if(formData.password!==formData.confirmPassword){
-            alert('Passwords do not match!')
+            setErrorMessage('Passwords do not match!')
+            return;
         }
         else{
             try {
@@ -34,8 +39,11 @@ const Signup = () => {
         
                 const data = await response.json();
                 if (response.ok) {
+                    setSuccessMessage("Registration Successful! Redirecting...")
                     console.log('Signup successful:', data);
+                    setTimeout(()=>navigate('/signin'), 2000);
                 } else {
+                    setErrorMessage(data.error || 'Registration failed! Try again later.')
                     console.error('Signup failed:', data.error);
                 }
             } catch (error) {
@@ -52,6 +60,8 @@ const Signup = () => {
     return (
         <div className="auth-container">
             <h2>Sign Up</h2>
+            {successMessage && <h6 className='success-message'>{successMessage}</h6>}
+            {errorMessage && <h6 className='error-message'>{errorMessage}</h6>}
             <form onSubmit={handleSubmit}>
                 <input 
                     type="text" 

@@ -1,30 +1,40 @@
+/* General container styles */
 .container {
-    max-width: 600px;
+    max-width: 95%;
     margin: auto;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
 }
 
+/* Form styling */
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
 }
 
-input {
-    padding: 8px;
+input, textarea {
+    width: 100%;
+    max-width: 380px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 button {
     background-color: #007bff;
     color: white;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    max-width: 220px;
+    margin-top: 8px;
 }
 
 button:disabled {
@@ -40,17 +50,77 @@ button:disabled {
     background-color: red;
 }
 
+/* Table Styling */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Makes table scrollable on small screens */
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
+    margin: 40px 0;
+    min-width: 600px; 
 }
 
 th, td {
     border: 1px solid #ccc;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
+    font-size: 1rem;
 }
 
 th {
+    font-size: 1.3rem;
     background-color: #f4f4f4;
+    color: darkblue;
+}
+
+/* Headings */
+h3 {
+    color: red;
+    font-size: 2rem;
+    margin-top: 50px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: darkblue;
+    margin: 10px 0;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    input, textarea, button {
+        max-width: 100%;
+    }
+
+    .table-container {
+        overflow-x: auto; /* Enables horizontal scrolling */
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap; /* Prevents text from breaking */
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
 }

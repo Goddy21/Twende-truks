@@ -25,6 +25,7 @@ const HeroSection = () => {
             >
                 <h2>Find the Perfect Truck for Your Job</h2>
                 <p>Browse through thousands of listings and get the best deals.</p>
+                <br />
                 <motion.button 
                     className="browse-button"
                     whileHover={{ scale: 1.1 }}
@@ -34,6 +35,7 @@ const HeroSection = () => {
                     Browse Listings
                 </motion.button>
             </motion.div>
+            <br />
             <motion.div 
                 className="hero-images"
                 initial={{ opacity: 0 }}
